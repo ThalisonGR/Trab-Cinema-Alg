@@ -18,7 +18,7 @@ programa
 		  	 	leia(s_do_menu)
 
 				se(s_do_menu == 4  ){
-					finaliza()
+			
 				}
 
 		   escolha(s_do_menu){
@@ -87,7 +87,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 242; 
+ * @POSICAO-CURSOR = 217; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = {s_do_menu, 9, 12, 9};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
