@@ -1,5 +1,7 @@
 programa
 {
+	inclua biblioteca Util	
+	
 	
 	funcao inicio()
 	{
@@ -8,25 +10,29 @@ programa
 		// S = SELEÇÃO DE MENU
 		  inteiro s_do_menu,s_compra_ing 
 
+		  const inteiro LUGARES = 5
+
+		  cadeia cinema[LUGARES][LUGARES] = {{"A1","A2","A3","A4","A5"},
+		  							  {"B1","B2","B3","B4","B5"},
+		  							  {"C1","C2","C3","C4","C5"},
+		  							  {"D1","D2","D3","DA","D5"},
+		  							  {"E1","E2","E3","E4","E5"}}
 
 
+		
 
 		   //APRESENTAÇÃO DO MENU
-		   faca{ // FACA 1
+		 //  faca{ // FACA 1
 		   		limpa()
 		  		menuApresentacao()
 		  	 	leia(s_do_menu)
-
-				se(s_do_menu == 4  ){
-				  finaliza()
-				}
 
 		   //MENU PRINCIPAL
 		   escolha(s_do_menu){
 		   	caso 1:
 		   			//faca{
 		   			limpa()
-					compraIngresso()
+					menuCompraIngresso()
 		  			leia(s_compra_ing)
 		   			//}enquanto(s_do_menu !=1 ou s_do_menu !=2 ou s_do_menu !=3)
 
@@ -35,13 +41,27 @@ programa
 
 		   				//MENU INGRESSO INTEIRA
 		   				caso 1:
+
+							inteiro qtdIngressoInteira = 0
+		   					
 		   					limpa()
 		   					cadeia nomeClienteInteira
-		   					escreva("Informe o nome do cliente")
+		   					escreva("Informe o nome do cliente:\n")
 		   					leia(nomeClienteInteira)
 
+							limpa()
 		   					saudacaoCliente(nomeClienteInteira)
-		   					// IRÁ CHAMAR A FUNCAO Á
+
+		   				
+							escreva("Quantos ingressos deseja comprar: \n ")
+							leia(qtdIngressoInteira)
+							
+							
+							
+							//Apresenta os lugares disponíveis no cinema
+							lugaresCinema(cinema, LUGARES)
+
+							
 		   					pare
 
 						//MENU INGRESSO MEIA
@@ -51,7 +71,7 @@ programa
 		   					inteiro s_cliente_meia
 
 		   					
-		   					escreva("Informe o nome do cliente\n")
+		   					escreva("Informe o nome do cliente:\n")
 		   					leia(nomeClienteMeia)
 
 		   					saudacaoCliente(nomeClienteMeia)
@@ -72,18 +92,39 @@ programa
 		   		
 		   		
 		   }
-		}enquanto(s_do_menu !=1 ou s_do_menu !=2 ou s_do_menu !=3 ou s_do_menu !=4) // ENQUANTO DO FACA 1
+		//}enquanto(s_do_menu !=1 ou s_do_menu !=2 ou s_do_menu !=3 ou s_do_menu !=4) // ENQUANTO DO FACA 1
 	}
  
 
-	//FUNÇÕES
+	//FUNÇÕES	
 
 
 
 
 	
 	// PROCEDIMEMTOS
-	funcao saudacaoCliente(cadeia nomeCliente){escreva("Bem-Vindo Sr(a)", nomeCliente)}
+
+	
+	funcao lugaresCinema(cadeia matriz[][], inteiro lugares){
+		
+		para(inteiro i = 0 ; i < lugares ; i++){
+			para(inteiro k = 0 ; k < lugares ; k++){
+				escreva(matriz[i][k],"\t")
+			}
+			escreva("\n")
+		}
+		escreva("----------------------------------\n")
+		escreva("-----------TELA DO CINEMA---------\n")
+		escreva("----------------------------------\n")
+	}
+	
+
+
+
+	
+	funcao saudacaoCliente(cadeia nomeCliente){
+		escreva("Bem-Vindo Sr(a) ", nomeCliente , "\n\n")
+		}
 
 	funcao menuClienteMeia(){
 		escreva("-------------------------------------------------------\n")
@@ -95,7 +136,7 @@ programa
 		escreva("-------------------------------------------------------\n")
 	}
 	
-	funcao compraIngresso(){
+	funcao menuCompraIngresso(){
 		escreva("-------------------------------------------------------\n")
 		 escreva("--------------MENU DE COMPRAR INGRESSO----------------\n")
 		escreva("-------------------------------------------------------\n")
@@ -114,6 +155,8 @@ programa
 		   escreva("3 - PROMOCIONAL\n")
 		   escreva("4 - SAIR\n")
 	}
+
+
 	 
 }
 /* $$$ Portugol Studio $$$ 
@@ -121,7 +164,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 292; 
+ * @POSICAO-CURSOR = 845; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
