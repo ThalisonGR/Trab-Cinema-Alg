@@ -5,15 +5,15 @@ programa
 	
 	funcao inicio()
 	{
-	 	logico thalisonlindo=falso
+	 
 		// VARIAVEIS UTILIZADAS NO MENU DO CLIENTE INTEIRA
 		const real valorIngresso = 50.00
 		// VARIAVEIS UTILIZADAS NO MENU DO CLIENTE INTEIRA
-		inteiro qtdIngressoInteira = 0
-		cadeia lugarEscolhido, CpfInteira ,nomeClienteInteira
+		inteiro qtdIngresso = 0, qnt_dev, ingresso_meia=0
+		cadeia lugarEscolhido, cpf_cliente ,nome_cliente, dev_compra 
 		//VARIAVEIS CLIENTE MEIA
-		cadeia nomeClienteMeia , respostaIFRS, CpfMeia
-		inteiro s_cliente_meia
+		cadeia  respostaIFRS
+		inteiro s_cliente, idade_cliente
 		logico logRespostaIF = falso
 		
 		//VARIAVEIS DE MENUS
@@ -56,41 +56,41 @@ programa
 		   				
 		   					limpa()
 		   					escreva("Informe o nome do cliente:\n")
-		   					leia(nomeClienteInteira)
+		   					leia(nome_cliente)
 
 							escreva("Qual seu CPF:\n")
-							leia(CpfInteira)
+							leia(cpf_cliente)
 		   						
 							limpa()
-		   					saudacaoCliente(nomeClienteInteira)
+		   					saudacaoCliente(nome_cliente)
 
 		   					escreva("Valor do ingresso Inteira é:\nR$",valorIngresso,"\n")
 							escreva("Quantos ingressos deseja comprar: \n ")
-							leia(qtdIngressoInteira)
+							leia(qtdIngresso)
 
 							//Apresentar o valor total dos ingressos (funcao calcIngresso)
 							escreva("\n")
 							escreva("Total da compra:\n")
-							escreva("R$",calcIngressos(valorIngresso, qtdIngressoInteira),"\n")
+							escreva("R$",calcIngressos(valorIngresso, qtdIngresso),"\n")
 							
 							
 							//Apresenta os lugares disponíveis no cinema
 							escreva("Lugares disponives:\n")
 							lugaresCinema(cinema, LUGARES)
 
-							se(qtdIngressoInteira > 1){
-								para(i = 0 ; i < qtdIngressoInteira; i++){
+							se(qtdIngresso > 1){
+								para(i = 0 ; i < qtdIngresso; i++){
 									escreva("Informe os lugares que deseja:\n")
 									leia(lugarEscolhido)
-									selecionaLugaresCompraIngresso(cinema,armazenaCPF, LUGARES, lugarEscolhido, CpfInteira)
+									selecionaLugaresCompraIngresso(cinema,armazenaCPF, LUGARES, lugarEscolhido, cpf_cliente)
 								}
 							
 								
 							}senao{
-								escreva("Informe os lugar que deseja\n")
+								escreva("Informe o lugar que deseja\n")
 								leia(lugarEscolhido)
 			
-								selecionaLugaresCompraIngresso(cinema,armazenaCPF, LUGARES, lugarEscolhido, CpfInteira)
+								selecionaLugaresCompraIngresso(cinema,armazenaCPF, LUGARES, lugarEscolhido, cpf_cliente)
 							}
 
 							escreva("VENDA REALIZADA COM SUCESSO\n")
@@ -110,19 +110,19 @@ programa
 									caso 1:
 																				limpa()
 										escreva("Informe o nome do estudante:\n")
-					   					leia(nomeClienteMeia)
+					   					leia(nome_cliente)
 			
 										escreva("Qual seu CPF:\n")
-										leia(CpfMeia)
+										leia(cpf_cliente)
 					   						
 										limpa()
-					   					saudacaoCliente(nomeClienteMeia)
+					   					saudacaoCliente(nome_cliente)
 					   					escreva("Você estuda no IFRS?\n")
 
 					   					//VERIFICAR O FACA DA RESPOSTA POIS ESTÁ DANDO ERRADO
 					   					faca{
 					   						leia(respostaIFRS)
-					   					}enquanto(respostaIFRS != "S" ou respostaIFRS != "N")
+					   					}enquanto(respostaIFRS != "S" e respostaIFRS != "N")
 
 					   					
 					   					se(respostaIFRS == "S" ){
@@ -136,35 +136,83 @@ programa
 					   						logRespostaIF = falso
 					   						calcIngressoEstudante(valorIngresso, logRespostaIF)
 					   					}
-
 					   					
+										
+										limpa()
+										lugaresCinema(cinema, LUGARES)
+										escreva("Informe o lugare que deseja:\n")
+										leia(lugarEscolhido)
+										selecionaLugaresCompraIngresso(cinema,armazenaCPF, LUGARES, lugarEscolhido, cpf_cliente)
+										}
+										
 										pare
 
 									//IDOSO TERÁ 50% de desconto sempre
 									caso 2:
+										//faca{
+										escreva("Digite o nome do cliente ou 4 para voltar :")
+										leia(nome_cliente)
+										limpa()
+										saudacaoCliente(nome_cliente)
+										escreva("Digite a idade do cliente")
+										leia(idade_cliente)
+										se(idade_cliente>60){
 										
-								}
-		   					pare
+										escreva("Digite o cpf do cliente: ")
+										leia(cpf_cliente)
+										
+										calc_idoso(valorIngresso)
+										escreva("O valor do ingresso é: ",ingresso_meia)
+										
+										lugaresCinema(cinema,LUGARES)
+										escreva("Digite o acento desejado: ")
+										leia(lugarEscolhido)
+										selecionaLugaresCompraIngresso(cinema,armazenaCPF,LUGARES, lugarEscolhido, cpf_cliente)
 
-		   				caso 3:
+										escreva("VENDA REALIZADA COM SUCESSO\n")
+										lugaresCinema(cinema, LUGARES)
+										Util.aguarde(1000)
+										limpa()
+										
+										}
+										senao{
+											escreva("Cliente incopativel com a promoção!")
+										}
+										//}enquanto(nome_cliente !="4")
+										pare
+		   								caso 3:
 
 		   					
 
-		   					pare 
+		   								pare 
 							
-		   				caso 4:
+		   								caso 4:
 		   				
-		   					pare 
+		   								pare 
 		   		
-		   			}
+		   								}
+		   			pare
 		   	//DEVOLUÇÃO COMPRA
 		   	caso 2:
+		   		lugaresCinema(cinema,LUGARES)
+		   		escreva("Quantos ingressos deseja devolver?")
+		   		leia(qnt_dev)
+		   		limpa()
+		   		para(i=0;i<qnt_dev;i++){
 		   		
+		   			escreva ("Digite o acento que deseja devolver: ")
+		   			leia(dev_compra)
+		   		
+		   			devolucaoCompra(cinema, copiacinema, LUGARES, dev_compra)
+		   			lugaresCinema(cinema, LUGARES)
+		   			Util.aguarde(1300)
+		   			limpa()
+		   		}
+		   		pare
 		   		
 		   }
 		}enquanto(menuApresentacao() != 4) // ENQUANTO DO FACA 1
 	}
- 
 	//FUNÇÕES	
 	funcao real calcIngressos(real valorIngresso, inteiro quantidadeComprada){
 		retorne valorIngresso * quantidadeComprada 
@@ -172,7 +220,6 @@ programa
 
 	funcao real calcIngressoEstudante(real valorIngresso, logico estudaIF){
 		//ESTUDANTE IRÁ TER 20% DE DESCONTO SE FOR DO IF OS DEMAIS  10%
-		estudaIF = falso
 		real calc = 0.0
 		real porcentagem = 0.0
 		se(estudaIF == verdadeiro){
@@ -183,7 +230,13 @@ programa
 			calc = valorIngresso - (valorIngresso * 0.10)
 			retorne calc
 		}
+		
+		retorne calc
+	}
 
+	funcao real calc_idoso(real valorIngresso){
+		real calc
+		calc= valorIngresso- (valorIngresso * 0.50)
 		retorne calc
 	}
 	
@@ -280,13 +333,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
-<<<<<<< HEAD
- * @POSICAO-CURSOR = 2471; 
- * @DOBRAMENTO-CODIGO = [106, 168, 172, 189, 202, 214, 254];
-=======
- * @POSICAO-CURSOR = 321; 
- * @DOBRAMENTO-CODIGO = [107, 169, 173, 190, 203, 215, 260];
->>>>>>> 61831231c0760fd3cc7ea2e246072fc340991701
+ * @POSICAO-CURSOR = 5236; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
