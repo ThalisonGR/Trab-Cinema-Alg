@@ -82,7 +82,7 @@ programa
 								para(i = 0 ; i < qtdIngressoInteira; i++){
 									escreva("Informe os lugares que deseja:\n")
 									leia(lugarEscolhido)
-									selecionaLugares(cinema,armazenaCPF, LUGARES, lugarEscolhido, CpfInteira)
+									selecionaLugaresCompraIngresso(cinema,armazenaCPF, LUGARES, lugarEscolhido, CpfInteira)
 								}
 							
 								
@@ -90,14 +90,13 @@ programa
 								escreva("Informe os lugar que deseja\n")
 								leia(lugarEscolhido)
 			
-								selecionaLugares(cinema,armazenaCPF, LUGARES, lugarEscolhido, CpfInteira)
+								selecionaLugaresCompraIngresso(cinema,armazenaCPF, LUGARES, lugarEscolhido, CpfInteira)
 							}
 
 							escreva("VENDA REALIZADA COM SUCESSO\n")
 							lugaresCinema(cinema, LUGARES)
 							Util.aguarde(1000)
 							limpa()
-
 							
 		   					pare
 
@@ -149,7 +148,6 @@ programa
 
 		   				caso 3:
 
-		   					escreva("Qual ingresso deseja devolver para o cinema:")
 		   					
 
 		   					pare 
@@ -159,6 +157,7 @@ programa
 		   					pare 
 		   		
 		   			}
+		   	//DEVOLUÇÃO COMPRA
 		   	caso 2:
 		   		
 		   		
@@ -240,19 +239,14 @@ programa
 		}		
 	}
 
-	
-	funcao selecionaLugares(cadeia matriz[][], cadeia matcpf[][], inteiro lugares, cadeia escolhaCliente, cadeia cpfCliente){
+	funcao devolucaoCompra(cadeia matriz[][], cadeia copiaCinema[][], inteiro lugares, cadeia cadeiraDevolvida){
 		para(inteiro i = 0 ; i < lugares ; i++){
 			para(inteiro k = 0 ; k < lugares ; k++){
-				se(matriz[i][k] == escolhaCliente){
-						
-						matriz[i][k] = "X"
-						matcpf[i][k] = cpfCliente			 
+				se(copiaCinema[i][k] == cadeiraDevolvida){
+					matriz[i][k] = copiaCinema[i][k]
 				}
 			}
-		}
-
-			
+		}		
 	}
 	
 	
@@ -286,8 +280,8 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 1021; 
- * @DOBRAMENTO-CODIGO = [107, 169, 173, 190, 203, 215, 260];
+ * @POSICAO-CURSOR = 2471; 
+ * @DOBRAMENTO-CODIGO = [106, 168, 172, 189, 202, 214, 254];
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
