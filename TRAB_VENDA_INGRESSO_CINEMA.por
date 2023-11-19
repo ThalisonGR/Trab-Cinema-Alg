@@ -27,6 +27,18 @@ programa
 		  							{"C1","C2","C3","C4","C5"},
 		  							{"D1","D2","D3","DA","D5"},
 		  							{"E1","E2","E3","E4","E5"}}
+		  							
+		cadeia armazenaCPF[LUGARES][LUGARES]={{"A1","A2","A3","A4","A5"},
+		  							   {"B1","B2","B3","B4","B5"},
+		  							   {"C1","C2","C3","C4","C5"},
+		  							   {"D1","D2","D3","DA","D5"},
+		  							   {"E1","E2","E3","E4","E5"}}
+		  							   
+		  cadeia copiacinema[LUGARES][LUGARES]={{"A1","A2","A3","A4","A5"},
+		  							   {"B1","B2","B3","B4","B5"},
+		  							   {"C1","C2","C3","C4","C5"},
+		  							   {"D1","D2","D3","DA","D5"},
+		  							   {"E1","E2","E3","E4","E5"}}
 
 		
 		   faca{ // FACA 1		
@@ -70,7 +82,7 @@ programa
 								para(i = 0 ; i < qtdIngressoInteira; i++){
 									escreva("Informe os lugares que deseja:\n")
 									leia(lugarEscolhido)
-									selecionaLugares(cinema, LUGARES, lugarEscolhido)
+									selecionaLugares(cinema,armazenaCPF, LUGARES, lugarEscolhido, CpfInteira)
 								}
 							
 								
@@ -78,7 +90,7 @@ programa
 								escreva("Informe os lugar que deseja\n")
 								leia(lugarEscolhido)
 			
-								selecionaLugares(cinema, LUGARES, lugarEscolhido)
+								selecionaLugares(cinema,armazenaCPF, LUGARES, lugarEscolhido, CpfInteira)
 							}
 
 							escreva("VENDA REALIZADA COM SUCESSO\n")
@@ -217,18 +229,32 @@ programa
 
 	
 	// PROCEDIMEMTOS
-	funcao selecionaLugares(cadeia matriz[][], inteiro lugares, cadeia escolhaCliente){
+	funcao selecionaLugaresCompraIngresso(cadeia matriz[][], cadeia matcpf[][], inteiro lugares, cadeia escolhaCliente, cadeia cpfCliente){
 		para(inteiro i = 0 ; i < lugares ; i++){
 			para(inteiro k = 0 ; k < lugares ; k++){
 				se(matriz[i][k] == escolhaCliente){
-						matriz[i][k] = "X"			 
+						matriz[i][k] = "X"
+						matcpf[i][k] = cpfCliente			 
+				}
+			}
+		}		
+	}
+
+	
+	funcao selecionaLugares(cadeia matriz[][], cadeia matcpf[][], inteiro lugares, cadeia escolhaCliente, cadeia cpfCliente){
+		para(inteiro i = 0 ; i < lugares ; i++){
+			para(inteiro k = 0 ; k < lugares ; k++){
+				se(matriz[i][k] == escolhaCliente){
+						
+						matriz[i][k] = "X"
+						matcpf[i][k] = cpfCliente			 
 				}
 			}
 		}
 
 			
 	}
-
+	
 	
 	
 	funcao lugaresCinema(cadeia matriz[][], inteiro lugares){
@@ -260,9 +286,9 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 2935; 
- * @DOBRAMENTO-CODIGO = [157, 161, 179, 192, 204, 220, 234, 247];
- * @PONTOS-DE-PARADA = 109;
+ * @POSICAO-CURSOR = 1021; 
+ * @DOBRAMENTO-CODIGO = [107, 169, 173, 190, 203, 215, 260];
+ * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
