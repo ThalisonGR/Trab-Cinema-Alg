@@ -5,7 +5,7 @@ programa
 	
 	funcao inicio()
 	{
-		
+	 	logico thalisonlindo=falso
 		// VARIAVEIS UTILIZADAS NO MENU DO CLIENTE INTEIRA
 		const real valorIngresso = 50.00
 		// VARIAVEIS UTILIZADAS NO MENU DO CLIENTE INTEIRA
@@ -286,7 +286,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 1021; 
+ * @POSICAO-CURSOR = 321; 
  * @DOBRAMENTO-CODIGO = [107, 169, 173, 190, 203, 215, 260];
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
