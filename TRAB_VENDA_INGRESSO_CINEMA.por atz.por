@@ -137,7 +137,7 @@ programa
 										escreva("Informe o lugare que deseja:\n")
 										leia(lugarEscolhido)
 										selecionaLugaresCompraIngresso(cinema, LUGARES, lugarEscolhido)
-										}
+										
 										
 										pare
 
@@ -173,7 +173,9 @@ programa
 										}
 										}enquanto(nome_cliente !="4")
 										pare	   		
-		   								
+		   			}
+		   }
+		   			
 		   			pare
 		   	//DEVOLUÇÃO COMPRA
 		   	caso 2:
@@ -193,7 +195,7 @@ programa
 		   		}
 		   		pare
 		   		
-				}
+				
 			}
 		}enquanto(menuApresentacao() != 4) // ENQUANTO DO FACA 1
 
@@ -222,7 +224,7 @@ programa
 
 	funcao real calc_idoso(real valorIngresso){
 		real calc
-		calc= valorIngresso- (valorIngresso * 0.50)
+		calc= (valorIngresso*1.0)- (valorIngresso * 0.50)
 		retorne calc
 	}
 	
@@ -313,7 +315,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 8099; 
+ * @POSICAO-CURSOR = 10; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
