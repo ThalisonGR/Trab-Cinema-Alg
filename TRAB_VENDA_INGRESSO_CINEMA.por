@@ -35,7 +35,13 @@ programa
 		  							{"E1","E2","E3","E4","E5"}}
 		  							
 		  							   
-		cadeia copiacinema[LUGARES][LUGARES]
+		cadeia copiacinema[LUGARES][LUGARES] ={{"A1","A2","A3","A4","A5"},
+			  							{"B1","B2","B3","B4","B5"},
+			  							{"C1","C2","C3","C4","C5"},
+			  							{"D1","D2","D3","D4","D5"},
+			  							{"E1","E2","E3","E4","E5"}}
+
+		
 		   faca{ // FACA 1		
 
 		   //MENU PRINCIPAL
@@ -149,7 +155,7 @@ programa
 										pare
 
 									//IDOSO TERÁ 50% de desconto sempre
-									caso 2:
+									/*caso 2:
 										
 										faca{
 										escreva("Digite o nome do cliente ou 4 para voltar: \n")
@@ -184,7 +190,7 @@ programa
 											escreva("Cliente incopativel com a promoção!\n")
 										}
 										}enquanto(nome_cliente !="4")
-										pare	   		
+										pare*/	   		
 		   			}
 		   }
 		   			
@@ -206,7 +212,7 @@ programa
 					   		limpa()
 					   		lugaresCinema(cinema, LUGARES)
 
-							devolucaoValorIngresso(qnt_dev, valorIngresso , log_resp_cliente_dev, total_faturado, 0)
+							devolucaoValorIngressoInteira(qnt_dev, valorIngresso , total_faturado, 0)
 					   		
 					   		para(i=0;i<qnt_dev;i++){
 					   		
@@ -236,7 +242,7 @@ programa
 					   		lugaresCinema(cinema, LUGARES)
 
 					   		//FUNCAO DEVOLUCAO INGRESSO
-					   		devolucaoValorIngresso(qnt_dev, valorIngresso , log_resp_cliente_dev, total_faturado,2)
+					   		devolucaoValorIngressoMeia(qnt_dev, valorIngresso , log_resp_cliente_dev, total_faturado,2)
 					   		para(i=0;i<qnt_dev;i++){
 					   		
 					   			escreva ("Digite o acento que deseja devolver: \ntestee")
@@ -269,10 +275,15 @@ programa
 	
 	//FUNÇÕ	
 
-	//VERIFICAR
+	//VERIFICADO FUNCIONANDO
+	funcao  devolucaoValorIngressoInteira(inteiro qtd_dev , real valorIngresso , real total_faturado[] , inteiro posicaoVet){
+		real calc = qtd_dev * valorIngresso
+		total_faturado[posicaoVet] = total_faturado[posicaoVet] - calc
+			
+	}
 
-	funcao  devolucaoValorIngresso(inteiro qtd_dev , real valorIngresso, logico estudaIF , real total_faturado[] , inteiro posicaoVet){
-		
+	//VERIFICAR
+	funcao  devolucaoValorIngressoMeia(inteiro qtd_dev , real valorIngresso, logico estudaIF , real total_faturado[] , inteiro posicaoVet){
 		real calc = 0.0 , porcentagem = 0.0
 		
 		se(estudaIF == verdadeiro){
@@ -362,7 +373,7 @@ programa
 		escreva("-------------------------------------------------------\n")
 		escreva("-------------------------------------------------------\n")
 		escreva("1 - ESTUDANTE\n")
-		escreva("2 - IDOSO\n")
+		//escreva("2 - IDOSO\n")
 		escreva("Selecione uma opcao para continuar\n")
 		escreva("-------------------------------------------------------\n")
 		escreva("-------------------------------------------------------\n")
@@ -455,8 +466,8 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 7760; 
- * @DOBRAMENTO-CODIGO = [210, 228, 239, 294, 301, 305, 313, 319, 332, 353, 345, 359, 377, 388, 402, 401, 415];
+ * @POSICAO-CURSOR = 10019; 
+ * @DOBRAMENTO-CODIGO = [30, 37];
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
