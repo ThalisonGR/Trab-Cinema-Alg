@@ -29,13 +29,11 @@ programa
 		  							{"E1","E2","E3","E4","E5"}}
 		  							
 		  							   
-		  cadeia copiacinema[LUGARES][LUGARES]={{"A1","A2","A3","A4","A5"},
+		cadeia copiacinema[LUGARES][LUGARES]={{"A1","A2","A3","A4","A5"},
 		  							   {"B1","B2","B3","B4","B5"},
 		  							   {"C1","C2","C3","C4","C5"},
 		  							   {"D1","D2","D3","D4","D5"},
 		  							   {"E1","E2","E3","E4","E5"}}
-
-		
 		   faca{ // FACA 1		
 
 		   //MENU PRINCIPAL
@@ -64,10 +62,12 @@ programa
 							}enquanto(qtdIngresso < 1 ou qtdIngresso > 25 )
 
 							//Apresentar o valor total dos ingressos (funcao calcIngresso)
-							
-								escreva("Deseja prosseguir com a compra?\n\nsim\tnao")
-								leia(resp_cliente)
-							se(resp_cliente == "sim"){
+							faca{
+								escreva("Deseja prosseguir com a compra?\n\nSIM\tou NAO")
+								leia(resp_cliente)	
+							}enquanto(resp_cliente != "SIM" e resp_cliente !="NAO")
+								
+							se(resp_cliente == "SIM"){
 								escreva("\n")
 								escreva("Total da compra:\n")
 								escreva("R$",calcIngressos(valorIngresso, qtdIngresso),"\n")
@@ -83,12 +83,16 @@ programa
 								}
 								
 								selecionaLugaresCompraIngresso(cinema, LUGARES, lugarEscolhido)
+
+								escreva("VENDA REALIZADA COM SUCESSO\n")
+								lugaresCinema(cinema, LUGARES)
+								Util.aguarde(1300)
+								limpa()
 							}
-							
-							escreva("VENDA REALIZADA COM SUCESSO\n")
-							lugaresCinema(cinema, LUGARES)
-							Util.aguarde(1300)
+
+							//CASO FOR SELECIONADO A OPCAO NAO
 							limpa()
+
 							
 		   					pare
 
@@ -100,7 +104,7 @@ programa
 
 									//ESTUDANTE IRÁ TER 20% DE DESCONTO se for do IF os demais 10%
 									caso 1:
-																				limpa()
+										limpa()
 										escreva("Informe o nome do estudante:\n")
 					   					leia(nome_cliente)
 			
@@ -146,6 +150,7 @@ programa
 										limpa()
 										escreva("Digite a idade do cliente")
 										leia(idade_cliente)
+										
 										se(idade_cliente>60){
 										
 										escreva("Digite o cpf do cliente: ")
@@ -166,7 +171,7 @@ programa
 										
 										}
 										senao{
-											escreva("Cliente incopativel com a promoção!")
+											escreva("Cliente incopativel com a promoção!\n")
 										}
 										}enquanto(nome_cliente !="4")
 										pare	   		
@@ -178,13 +183,13 @@ programa
 		   	caso 2:
 		   		limpa()
 		   		lugaresCinema(cinema,LUGARES)
-		   		escreva("Quantos ingressos deseja devolver?")
+		   		escreva("Quantos ingressos deseja devolver?\n")
 		   		leia(qnt_dev)
 		   		limpa()
 		   		lugaresCinema(cinema, LUGARES)
 		   		para(i=0;i<qnt_dev;i++){
 		   		
-		   			escreva ("Digite o acento que deseja devolver: ")
+		   			escreva ("Digite o acento que deseja devolver: \n")
 		   			leia(dev_compra)
 		   		
 		   			devolucaoCompra(cinema, copiacinema, LUGARES, dev_compra)
@@ -229,7 +234,7 @@ programa
 	
 	funcao inteiro menuApresentacao(){
 		   inteiro selecaoUser
-		   escreva("Bem-vindo ao Cinema do TADS\n")
+		   escreva("Cinema do TADS\n")
 		   escreva("Selecione uma opcao para continuar\n")
 		   escreva("-------------------------------------------------------\n")
 		   escreva("1 - COMPRAR INGRESSO\n")
@@ -299,7 +304,7 @@ programa
 			escreva("\n")
 		}
 		
-		escreva("----------------------------------\n")
+		escreva("----------------------------------")
 		escreva("-----------TELA DO CINEMA---------\n")
 		escreva("----------------------------------\n")
 	}
@@ -326,7 +331,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 1538; 
+ * @POSICAO-CURSOR = 1573; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
