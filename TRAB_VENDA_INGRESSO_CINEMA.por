@@ -28,11 +28,6 @@ programa
 		  							{"D1","D2","D3","D4","D5"},
 		  							{"E1","E2","E3","E4","E5"}}
 		  							
-		cadeia armazenaCPF[LUGARES][LUGARES]={{"A1","A2","A3","A4","A5"},
-		  							   {"B1","B2","B3","B4","B5"},
-		  							   {"C1","C2","C3","C4","C5"},
-		  							   {"D1","D2","D3","D4","D5"},
-		  							   {"E1","E2","E3","E4","E5"}}
 		  							   
 		  cadeia copiacinema[LUGARES][LUGARES]={{"A1","A2","A3","A4","A5"},
 		  							   {"B1","B2","B3","B4","B5"},
@@ -63,8 +58,10 @@ programa
 		   						
 							limpa()
 		   					escreva("Valor do ingresso Inteira é:\nR$",valorIngresso,"\n")
-							escreva("Informe quantidade de ingressos desejada: \n ")
-							leia(qtdIngresso)
+							faca{
+								escreva("Informe quantidade de ingressos desejada: \n ")
+								leia(qtdIngresso)
+							}enquanto(qtdIngresso < 1 ou qtdIngresso > 25 )
 
 							//Apresentar o valor total dos ingressos (funcao calcIngresso)
 							
@@ -132,7 +129,7 @@ programa
 					   					}
 					   					
 										
-										limpa()
+										
 										lugaresCinema(cinema, LUGARES)
 										escreva("Informe o lugare que deseja:\n")
 										leia(lugarEscolhido)
@@ -179,10 +176,12 @@ programa
 		   			pare
 		   	//DEVOLUÇÃO COMPRA
 		   	caso 2:
+		   		limpa()
 		   		lugaresCinema(cinema,LUGARES)
 		   		escreva("Quantos ingressos deseja devolver?")
 		   		leia(qnt_dev)
 		   		limpa()
+		   		lugaresCinema(cinema, LUGARES)
 		   		para(i=0;i<qnt_dev;i++){
 		   		
 		   			escreva ("Digite o acento que deseja devolver: ")
@@ -282,6 +281,7 @@ programa
 	funcao devolucaoCompra(cadeia matriz[][], cadeia copiaCinema[][], inteiro lugares, cadeia cadeiraDevolvida){
 		para(inteiro i = 0 ; i < lugares ; i++){
 			para(inteiro k = 0 ; k < lugares ; k++){
+				
 				se(copiaCinema[i][k] == cadeiraDevolvida){
 					matriz[i][k] = copiaCinema[i][k]
 				}
@@ -326,7 +326,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 2720; 
+ * @POSICAO-CURSOR = 1538; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
