@@ -10,12 +10,12 @@ programa
 		const real valorIngresso = 50.00
 		const inteiro VET_FAT_TAM = 3
 		// VARIAVEIS UTILIZADAS NO MENU DO CLIENTE INTEIRA
-		inteiro qtdIngresso = 0, qnt_dev, ingresso_meia=0
+		inteiro qtdIngresso = 0, qnt_dev, ingresso_meia=0, l=0, c=0
 		cadeia lugarEscolhido = "", cpf_cliente ,nome_cliente, dev_compra 
 		//VARIAVEIS CLIENTE MEIA
 		cadeia  respostaIFRS, resp_cliente 
 		inteiro s_cliente, idade_cliente, respMenu
-		logico logRespostaIF = falso, log_resp_cliente_dev = falso
+		logico logRespostaIF = falso, log_resp_cliente_dev = falso, teste_lugar= falso
 
 		//VET DO FATURAMENTO 0 = INTEIRA  1 = ESTUDANTE   2 = MEIA
 		real total_faturado [VET_FAT_TAM]
@@ -87,8 +87,18 @@ programa
 							escreva("Lugares disponives:\n")
 							lugaresCinema(cinema, LUGARES)
 								para(i = 0 ; i < qtdIngresso; i++){
+									teste_lugar=falso
 									escreva("Informe o lugar solicitado:\n")
+									faca{
 									leia(lugarEscolhido)
+									para(l=0;l<LUGARES;l++){
+										para(c=0;c<LUGARES;c++){
+											se(lugarEscolhido == cinema[l][c]){
+												teste_lugar= verdadeiro
+											}
+										}
+									}
+									}enquanto(nao teste_lugar)
 									selecionaLugaresCompraIngresso(cinema, LUGARES, lugarEscolhido)
 								}
 								
@@ -149,7 +159,17 @@ programa
 										
 										lugaresCinema(cinema, LUGARES)
 										escreva("Informe o lugare que deseja:\n")
+										teste_lugar= falso
+										faca{
 										leia(lugarEscolhido)
+										para(l=0;l<LUGARES;l++){
+											para(c=0;c<LUGARES;c++){
+												se(lugarEscolhido == cinema[l][c]){
+													teste_lugar = verdadeiro
+												}
+											}
+										}
+										}enquanto(nao teste_lugar)
 										selecionaLugaresCompraIngresso(cinema, LUGARES, lugarEscolhido)
 										
 										
@@ -287,14 +307,14 @@ programa
 	funcao  devolucaoValorIngressoMeia(inteiro qtd_dev , real valorIngresso, logico estudaIF , real total_faturado[] , inteiro posicaoVet){
 		real calc = 0.0 , porcentagem = 0.0
 		
-		se(estudaIF == verdadeiro){
+		se(estudaIF){
 		porcentagem =  qtd_dev  * (valorIngresso * 0.20)
 		calc = (valorIngresso * qtd_dev) 
 		//POSiccaoo 1 é do estudantee
 		total_faturado[posicaoVet] = total_faturado[posicaoVet] - calc
 		
 		}
-		se(estudaIF == falso){
+		se(nao estudaIF){
 			calc = valorIngresso * qtd_dev -(valorIngresso * 0.10)
 			total_faturado[posicaoVet] = total_faturado[posicaoVet] - calc
 			
