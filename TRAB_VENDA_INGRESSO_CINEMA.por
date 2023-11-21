@@ -271,7 +271,7 @@ programa
 
 	//VERIFICAR
 
-	funcao  devolucaoValorIngressomEstudante(inteiro qtd_dev , real valorIngresso, logico estudaIF , real total_faturado[] , inteiro posicaoVet){
+	funcao  devolucaoValorIngresso(inteiro qtd_dev , real valorIngresso, logico estudaIF , real total_faturado[] , inteiro posicaoVet){
 		
 		real calc = 0.0 , porcentagem = 0.0
 		
@@ -455,7 +455,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 8016; 
+ * @POSICAO-CURSOR = 7760; 
  * @DOBRAMENTO-CODIGO = [210, 228, 239, 294, 301, 305, 313, 319, 332, 353, 345, 359, 377, 388, 402, 401, 415];
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
