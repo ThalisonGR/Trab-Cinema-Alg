@@ -29,11 +29,7 @@ programa
 		  							{"E1","E2","E3","E4","E5"}}
 		  							
 		  							   
-		cadeia copiacinema[LUGARES][LUGARES]={{"A1","A2","A3","A4","A5"},
-		  							   {"B1","B2","B3","B4","B5"},
-		  							   {"C1","C2","C3","C4","C5"},
-		  							   {"D1","D2","D3","D4","D5"},
-		  							   {"E1","E2","E3","E4","E5"}}
+		cadeia copiacinema[LUGARES][LUGARES]
 		   faca{ // FACA 1		
 
 		   //MENU PRINCIPAL
@@ -144,16 +140,19 @@ programa
 
 									//IDOSO TERÁ 50% de desconto sempre
 									caso 2:
+										
 										faca{
-										escreva("Digite o nome do cliente ou 4 para voltar :")
+										escreva("Digite o nome do cliente ou 4 para voltar: \n")
 										leia(nome_cliente)
 										limpa()
-										escreva("Digite a idade do cliente")
+										faca{
+										escreva("Digite a idade do cliente: \n")
 										leia(idade_cliente)
+										}enquanto(idade_cliente<0 ou idade_cliente >150)
 										
-										se(idade_cliente>60){
+										se(idade_cliente>=60){
 										
-										escreva("Digite o cpf do cliente: ")
+										escreva("Digite o cpf do cliente: \n")
 										leia(cpf_cliente)
 										
 										calc_idoso(valorIngresso)
@@ -253,7 +252,9 @@ programa
 		escreva("1 - INTEIRA\n")
 		escreva("2 - MEIA\n")
 		escreva("Selecione uma opcao para continuar\n")
+		faca{
 		leia(selecaoCompraIngresso)
+		}enquanto(selecaoCompraIngresso !=1 e selecaoCompraIngresso !=2 )
 		retorne selecaoCompraIngresso
 	}
 	
@@ -266,7 +267,9 @@ programa
 		escreva("Selecione uma opcao para continuar\n")
 		escreva("-------------------------------------------------------\n")
 		escreva("-------------------------------------------------------\n")
+		faca{
 		leia(selecaoUser)
+		}enquanto(selecaoUser != 1 e selecaoUser != 2)
 		retorne selecaoUser
 	}
 
@@ -277,8 +280,9 @@ programa
 		para(inteiro i = 0 ; i < lugares ; i++){
 			para(inteiro k = 0 ; k < lugares ; k++){
 				se(matriz[i][k]==escolhaCliente){
-						matriz[i][k] = "X"	 
+						matriz[i][k] = "X"	 		
 					}
+					
 				}
 			}		
 		}
@@ -332,7 +336,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 8153; 
+ * @POSICAO-CURSOR = 4069; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
