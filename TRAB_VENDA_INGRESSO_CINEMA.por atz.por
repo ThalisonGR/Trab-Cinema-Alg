@@ -19,43 +19,32 @@ programa
 
 		//VET DO FATURAMENTO 0 = INTEIRA  1 = ESTUDANTE   2 = MEIA
 		real total_faturado [VET_FAT_TAM]
-
-
 		
 		//VARIAVEIS DE MENUS
 		// S = SELEÇÃO DE MENU
 		inteiro s_do_menu,s_compra_ing, i
-
 		const inteiro LUGARES = 5
-
 		cadeia cinema[LUGARES][LUGARES] = {{"A1","A2","A3","A4","A5"},
 		  							{"B1","B2","B3","B4","B5"},
 		  							{"C1","C2","C3","C4","C5"},
 		  							{"D1","D2","D3","D4","D5"},
-		  							{"E1","E2","E3","E4","E5"}}
-		  							
-		  							   
+		  							{"E1","E2","E3","E4","E5"}}									  							   
 		cadeia copiacinema[LUGARES][LUGARES] ={{"A1","A2","A3","A4","A5"},
 			  							{"B1","B2","B3","B4","B5"},
 			  							{"C1","C2","C3","C4","C5"},
 			  							{"D1","D2","D3","D4","D5"},
 			  							{"E1","E2","E3","E4","E5"}}
 
-		
 		   faca{ // FACA 1		
-
 		   //MENU PRINCIPAL
 		   respMenu = menuApresentacao()
 		   escolha(respMenu){
 		   	caso 1:
-		  
 		   			limpa() 			
 		   			//MENU COMPRA INGRESSO CHAMA A FUNCAO DENTRO DO ESCOLHA
 		   			escolha(menuCompraIngresso()){
-
 		   				//MENU INGRESSO INTEIRA
 		   				caso 1:  
-		   				
 		   					limpa()
 		   					escreva("Informe o nome do cliente:\n")
 		   					leia(nome_cliente)
@@ -70,9 +59,8 @@ programa
 								escreva("\n")
 								escreva("Total da compra:\n")
 								escreva("R$",calcIngressosInteira(valorIngresso, qtdIngresso),"\n")
-								total_faturado[0] = calcIngressosInteira(valorIngresso, qtdIngresso)
-								
-							
+								total_faturado[0] =  total_faturado[0] + calcIngressosInteira(valorIngresso, qtdIngresso)
+												
 							//Apresenta os lugares disponíveis no cinema
 							escreva("Lugares disponives:\n")
 							lugaresCinema(cinema, LUGARES)
@@ -88,11 +76,6 @@ programa
 								lugaresCinema(cinema, LUGARES)
 								Util.aguarde(1300)
 								limpa()
-							//}
-
-							//CASO FOR SELECIONADO A OPCAO NAO
-							limpa()
-
 							
 		   					pare
 
@@ -107,9 +90,6 @@ programa
 										limpa()
 										escreva("Informe o nome do estudante:\n")
 					   					leia(nome_cliente)
-			
-										escreva("CPF do estudante:\n")
-										leia(cpf_cliente)
 					   						
 										limpa()
 					   					escreva("É estudante IFRS?\nSIM\t OU\t NAO\n")
@@ -124,23 +104,22 @@ programa
 					   						logRespostaIF = verdadeiro
 					   						escreva("Valor do ingresso:\n")
 					   						escreva("R$",calcIngressoEstudante(valorIngresso, logRespostaIF))
-					   						total_faturado[1] = calcIngressoEstudante(valorIngresso, logRespostaIF)
+					   						total_faturado[1] = total_faturado[1] + calcIngressoEstudante(valorIngresso, logRespostaIF)
 
 					   						
 					   					}
 					   					se(respostaIFRS == "NAO"){
 					   						logRespostaIF = falso
-					   						calcIngressoEstudante(valorIngresso, logRespostaIF)
-					   						total_faturado[1] = calcIngressoEstudante(valorIngresso, logRespostaIF)
+					   						escreva("R$",calcIngressoEstudante(valorIngresso, logRespostaIF))
+					   						total_faturado[1] = total_faturado[1] + calcIngressoEstudante(valorIngresso, logRespostaIF)
 
 					   					}
-					   					
-										
-										
+					   									
 										lugaresCinema(cinema, LUGARES)
 										escreva("Informe o lugare que deseja:\n")
 										leia(lugarEscolhido)
 										selecionaLugaresCompraIngresso(cinema, LUGARES, lugarEscolhido)
+										limpa()
 										
 										pare
 	   		
@@ -157,8 +136,7 @@ programa
 		   			caso 1:
 
 		   					limpa()
-							
-					   		
+							  		
 					   		lugaresCinema(cinema,LUGARES)
 					   		escreva("Quantos ingressos deseja devolver?\n")
 					   		leia(qnt_dev)
@@ -195,10 +173,10 @@ programa
 					   		lugaresCinema(cinema, LUGARES)
 
 					   		//FUNCAO DEVOLUCAO INGRESSO
-					   		devolucaoValorIngressoMeia(qnt_dev, valorIngresso , log_resp_cliente_dev, total_faturado,2)
+					   		devolucaoValorIngressoMeia(qnt_dev, valorIngresso , log_resp_cliente_dev, total_faturado,1)
 					   		para(i=0;i<qnt_dev;i++){
 					   		
-					   			escreva ("Digite o acento que deseja devolver: \ntestee")
+					   			escreva ("Digite o acento que deseja devolver: \n")
 					   			leia(dev_compra)
 					   		
 					   			devolucaoCompra(cinema, copiacinema, LUGARES, dev_compra)
@@ -207,8 +185,6 @@ programa
 					   			Util.aguarde(1300)
 					   			limpa()
 					   		}
-					   		
-
 						
 		   			 pare
 		   		}
@@ -232,32 +208,31 @@ programa
 	}		
 
 	   
-	
-	//FUNÇÕES	
-
-	//VERIFICADO FUNCIONANDO
+	//FUNCAO
 	funcao  devolucaoValorIngressoInteira(inteiro qtd_dev , real valorIngresso , real total_faturado[] , inteiro posicaoVet){
-		real calc = qtd_dev * valorIngresso
-		total_faturado[posicaoVet] = total_faturado[posicaoVet] - calc
+		se(total_faturado[posicaoVet] >=50){
+			real calc = qtd_dev * valorIngresso
+			total_faturado[posicaoVet] = total_faturado[posicaoVet] - calc
+		}
 			
 	}
-
-	//VERIFICAR
+	//PROCEDDIMME
 	funcao  devolucaoValorIngressoMeia(inteiro qtd_dev , real valorIngresso, logico estudaIF , real total_faturado[] , inteiro posicaoVet){
 		real calc = 0.0 , porcentagem_unit_ingresso = 0.0
-		
 		se(estudaIF){
-		
-		porcentagem_unit_ingresso =  valorIngresso * 0.20
-		
-		calc = (valorIngresso * qtd_dev) 
-		//POSiccaoo 1 é do estudantee
-		total_faturado[posicaoVet] = total_faturado[posicaoVet] - calc
-		
+			para(inteiro i = 0 ; i < qtd_dev; i++){	
+			calc = valorIngresso - (valorIngresso * 0.20)
+			//POSICAO DO ESTUDANTE É 1 NO VETOR
+				se(total_faturado[posicaoVet] >= 40){
+					total_faturado[posicaoVet] = total_faturado[posicaoVet] - calc	
+				}
+			}
 		}
-		se(estudaIF){
-			calc = valorIngresso * qtd_dev -(valorIngresso * 0.10)
-			total_faturado[posicaoVet] = total_faturado[posicaoVet] - calc
+		se(nao estudaIF){
+			se(total_faturado[posicaoVet] >= 45){
+				calc = valorIngresso - (valorIngresso * 0.10)
+				total_faturado[posicaoVet] = total_faturado[posicaoVet] - calc
+			}
 			
 		}
 		
@@ -265,10 +240,11 @@ programa
 	}
 	
 	//RELATORIO FATURAMENTO INTEIRA
+	//FUNCAO
 	funcao real calcIngressosInteira(real valorIngresso, inteiro quantidadeComprada){
 		retorne valorIngresso * quantidadeComprada 
 	}
-	
+	//FUNCAO
 	funcao real calcIngressoEstudante(real valorIngresso, logico estudaIF){
 		//ESTUDANTE IRÁ TER 20% DE DESCONTO SE FOR DO IF OS DEMAIS  10%
 		real calc = 0.0
@@ -284,7 +260,7 @@ programa
 		retorne calc
 	}
 
-	
+	//FUNCAO
 	funcao inteiro menuApresentacao(){
 		   inteiro selecaoUser
 		   escreva("Cinema do TADS\n")
@@ -298,7 +274,7 @@ programa
 		   leia(selecaoUser)
 		   retorne selecaoUser
 	}
-
+	//FUNCAO
 	funcao inteiro menuCompraIngresso(){
 		inteiro selecaoCompraIngresso
 		escreva("-------------------------------------------------------\n")
@@ -312,6 +288,7 @@ programa
 		}enquanto(selecaoCompraIngresso !=1 e selecaoCompraIngresso !=2 )
 		retorne selecaoCompraIngresso
 	}
+	//FUNCAO
 	funcao inteiro menuDevolucaoIngresso(){
 		inteiro selecaoCompraIngresso
 		escreva("-------------------------------------------------------\n")
@@ -325,7 +302,7 @@ programa
 		}enquanto(selecaoCompraIngresso !=1 e selecaoCompraIngresso !=2 )
 		retorne selecaoCompraIngresso
 	}
-	
+	//FUNCAO
 	funcao inteiro menuClienteMeia(){
 		inteiro selecaoUser
 		escreva("-------------------------------------------------------\n")
@@ -354,7 +331,7 @@ programa
 				}
 			}		
 		}
-
+	// PROCEDIMEMTOS
 	funcao devolucaoCompra(cadeia matriz[][], cadeia copiaCinema[][], inteiro lugares, cadeia cadeiraDevolvida){
 		para(inteiro i = 0 ; i < lugares ; i++){
 			para(inteiro k = 0 ; k < lugares ; k++){
@@ -366,7 +343,7 @@ programa
 		}		
 	}
 		
-	
+	// PROCEDIMEMTOS
 	funcao lugaresCinema(cadeia matriz[][], inteiro lugares){
 		para(inteiro i = 0 ; i < lugares ; i++){
 			escreva("\n\t")
@@ -380,19 +357,24 @@ programa
 		escreva("\t-----------TELA DO CINEMA---------\n")
 		escreva("\t----------------------------------\n")
 	}
-
+	// PROCEDIMEMTOS
 	funcao apresentacaoRelatorio(real total_faturado[], inteiro tamVet){
+		cadeia retMenuPrin
 		limpa()
+		escreva("-------RELATÓRIO DE FATURAMENTO DO CINEMA--------\n\n")
 		para(inteiro i = 0 ; i < tamVet ; i++){
-			se(i == 0){escreva("TOTAL DE VENDAS INTEIRA\n", total_faturado[0], "\n")}
-			se(i == 1){escreva("TOTAL DE VENDAS ESTUDANTE\n",total_faturado[1],"\n")}
+			se(i == 0){
+				escreva("TOTAL DE VENDAS INTEIRA\nR$ ", total_faturado[0], "\n")
+				}
+			se(i == 1){
+				escreva("TOTAL DE VENDAS ESTUDANTE\nR$ ",total_faturado[1],"\n")
+				}
 		}	
-			escreva("AGUARDE IRÁ RETORNAR AO MENU...")
-			Util.aguarde(5000)
+			escreva("-------------------------------------\n")
+			escreva("1 - VOLTAR AO MENU\n")
+			leia(retMenuPrin)
 			limpa()
 	}
-
-	
 
 }
 /* $$$ Portugol Studio $$$ 
