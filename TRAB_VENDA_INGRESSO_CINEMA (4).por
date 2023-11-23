@@ -8,7 +8,7 @@ programa
 	 
 		// VARIAVEIS UTILIZADAS NO MENU DO CLIENTE INTEIRA
 		const real valorIngresso = 50.00
-		const inteiro VET_FAT_TAM = 3
+		const inteiro VET_FAT_TAM = 2
 		// VARIAVEIS UTILIZADAS NO MENU DO CLIENTE INTEIRA
 		inteiro qtdIngresso = 0, qnt_dev, ingresso_meia=0, l=0, c=0
 		cadeia lugarEscolhido = "", cpf_cliente ,nome_cliente, dev_compra 
@@ -54,15 +54,12 @@ programa
 		   			escolha(menuCompraIngresso()){
 
 		   				//MENU INGRESSO INTEIRA
-		   				caso 1:
+		   				caso 1:  
 		   				
 		   					limpa()
 		   					escreva("Informe o nome do cliente:\n")
 		   					leia(nome_cliente)
-
-							escreva("Informe CPF do cliente:\n")
-							leia(cpf_cliente)
-		   						
+		   			
 							limpa()
 		   					escreva("Valor do ingresso Inteira é:\nR$",valorIngresso,"\n")
 							faca{
@@ -70,13 +67,6 @@ programa
 								leia(qtdIngresso)
 							}enquanto(qtdIngresso < 1 ou qtdIngresso > 25 )
 
-							//Apresentar o valor total dos ingressos (funcao calcIngresso)
-							/*faca{
-								escreva("Deseja prosseguir com a compra?\n\nSIM\tOU\t NAO\n")
-								leia(resp_cliente)	
-							}enquanto(resp_cliente != "SIM" e resp_cliente !="NAO")
-								
-							se(resp_cliente == "SIM"){*/
 								escreva("\n")
 								escreva("Total da compra:\n")
 								escreva("R$",calcIngressosInteira(valorIngresso, qtdIngresso),"\n")
@@ -87,14 +77,14 @@ programa
 							escreva("Lugares disponives:\n")
 							lugaresCinema(cinema, LUGARES)
 								para(i = 0 ; i < qtdIngresso; i++){
-									teste_lugar=falso
 									escreva("Informe o lugar solicitado:\n")
+									teste_lugar = falso
 									faca{
 									leia(lugarEscolhido)
 									para(l=0;l<LUGARES;l++){
 										para(c=0;c<LUGARES;c++){
 											se(lugarEscolhido == cinema[l][c]){
-												teste_lugar= verdadeiro
+												teste_lugar = verdadeiro
 											}
 										}
 									}
@@ -161,57 +151,19 @@ programa
 										escreva("Informe o lugare que deseja:\n")
 										teste_lugar= falso
 										faca{
-										leia(lugarEscolhido)
-										para(l=0;l<LUGARES;l++){
-											para(c=0;c<LUGARES;c++){
-												se(lugarEscolhido == cinema[l][c]){
-													teste_lugar = verdadeiro
+											leia(lugarEscolhido)
+											para(l=0;l<LUGARES;l++){
+												para(c=0;c<LUGARES;c++){
+													se(lugarEscolhido== cinema[l][c]){
+														teste_lugar = verdadeiro
+													}
 												}
 											}
-										}
 										}enquanto(nao teste_lugar)
 										selecionaLugaresCompraIngresso(cinema, LUGARES, lugarEscolhido)
 										
-										
 										pare
-
-									//IDOSO TERÁ 50% de desconto sempre
-									/*caso 2:
-										
-										faca{
-										escreva("Digite o nome do cliente ou 4 para voltar: \n")
-										leia(nome_cliente)
-										limpa()
-										faca{
-										escreva("Digite a idade do cliente: \n")
-										leia(idade_cliente)
-										}enquanto(idade_cliente<0 ou idade_cliente >150)
-										
-										se(idade_cliente>=60){
-										
-										escreva("Digite o cpf do cliente: \n")
-										leia(cpf_cliente)
-										
-										calc_idoso(valorIngresso)
-										escreva("O valor do ingresso é: ",ingresso_meia)
-										total_faturado[3] = calc_idoso(ingresso_meia * 1.0) //VERRIFFICCAAR
-										
-										lugaresCinema(cinema,LUGARES)
-										escreva("Digite o acento desejado: ")
-										leia(lugarEscolhido)
-										selecionaLugaresCompraIngresso(cinema,LUGARES, lugarEscolhido)
-
-										escreva("VENDA REALIZADA COM SUCESSO\n")
-										lugaresCinema(cinema, LUGARES)
-										Util.aguarde(1300)
-										limpa()
-										
-										}
-										senao{
-											escreva("Cliente incopativel com a promoção!\n")
-										}
-										}enquanto(nome_cliente !="4")
-										pare*/	   		
+	   		
 		   			}
 		   }
 		   			
@@ -286,15 +238,21 @@ programa
 
 		   	caso 3:
 		   		apresentacaoRelatorio(total_faturado, VET_FAT_TAM)
+				pare
+			caso 4:
+				limpa()
+				lugaresCinema(cinema, LUGARES)
+				escreva("AGUARDE IRÁ RETORNAR AO MENU...")
+				Util.aguarde(5000)
+			 	limpa()
 				
 			}
-		}enquanto(respMenu!= 4) // ENQUANTO DO FACA 1
-
+		}enquanto(respMenu!= 5) // ENQUANTO DO FACA 1
 	}		
 
 	   
 	
-	//FUNÇÕ	
+	//FUNÇÕES	
 
 	//VERIFICADO FUNCIONANDO
 	funcao  devolucaoValorIngressoInteira(inteiro qtd_dev , real valorIngresso , real total_faturado[] , inteiro posicaoVet){
@@ -305,16 +263,18 @@ programa
 
 	//VERIFICAR
 	funcao  devolucaoValorIngressoMeia(inteiro qtd_dev , real valorIngresso, logico estudaIF , real total_faturado[] , inteiro posicaoVet){
-		real calc = 0.0 , porcentagem = 0.0
+		real calc = 0.0 , porcentagem_unit_ingresso = 0.0
 		
 		se(estudaIF){
-		porcentagem =  qtd_dev  * (valorIngresso * 0.20)
+		
+		porcentagem_unit_ingresso =  valorIngresso * 0.20
+		
 		calc = (valorIngresso * qtd_dev) 
 		//POSiccaoo 1 é do estudantee
 		total_faturado[posicaoVet] = total_faturado[posicaoVet] - calc
 		
 		}
-		se(nao estudaIF){
+		se(estudaIF){
 			calc = valorIngresso * qtd_dev -(valorIngresso * 0.10)
 			total_faturado[posicaoVet] = total_faturado[posicaoVet] - calc
 			
@@ -343,11 +303,6 @@ programa
 		retorne calc
 	}
 
-	funcao real calc_idoso(real valorIngresso){
-		real calc
-		calc= valorIngresso- (valorIngresso * 0.50)
-		retorne calc
-	}
 	
 	funcao inteiro menuApresentacao(){
 		   inteiro selecaoUser
@@ -357,7 +312,8 @@ programa
 		   escreva("1 - COMPRAR INGRESSO\n")
 		   escreva("2 - DEVOLUÇÃO DO INGRESSO\n")
 		   escreva("3 - FATURAMENTO CINEMA\n")
-		   escreva("4 - SAIR\n")
+		   escreva("4 - SESSÃO\n")
+		   escreva("5 - SAIR\n")
 		   leia(selecaoUser)
 		   retorne selecaoUser
 	}
@@ -428,8 +384,7 @@ programa
 			}
 		}		
 	}
-	
-	
+		
 	
 	funcao lugaresCinema(cadeia matriz[][], inteiro lugares){
 		para(inteiro i = 0 ; i < lugares ; i++){
@@ -450,9 +405,8 @@ programa
 		para(inteiro i = 0 ; i < tamVet ; i++){
 			se(i == 0){escreva("TOTAL DE VENDAS INTEIRA\n", total_faturado[0], "\n")}
 			se(i == 1){escreva("TOTAL DE VENDAS ESTUDANTE\n",total_faturado[1],"\n")}
-			se(i == 2){escreva("TOTAL DE VENDAS IDOSO\n", total_faturado[2], "\n")}
-
-		}
+		}	
+			escreva("AGUARDE IRÁ RETORNAR AO MENU...")
 			Util.aguarde(5000)
 			limpa()
 	}
@@ -460,25 +414,3 @@ programa
 	
 
 }
-/* $$$ Portugol Studio $$$ 
- * 
- * Esta seção do arquivo guarda informações do Portugol Studio.
- * Você pode apagá-la se estiver utilizando outro editor.
- * 
- * @POSICAO-CURSOR = 10; 
- * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = ;
- * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
- * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
- */
-/* $$$ Portugol Studio $$$ 
- * 
- * Esta seção do arquivo guarda informações do Portugol Studio.
- * Você pode apagá-la se estiver utilizando outro editor.
- * 
- * @POSICAO-CURSOR = 4069; 
- * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = ;
- * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
- * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
- */
