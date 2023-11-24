@@ -4,7 +4,7 @@ programa
 
 	//FINALIZADO DIA 23/11 16:32
 	
-	funcao inicio()1
+	funcao inicio()
 	{
 	 
 		// VARIAVEIS UTILIZADAS NO MENU DO CLIENTE INTEIRA
