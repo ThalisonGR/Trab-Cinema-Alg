@@ -73,7 +73,7 @@ programa
 									leia(lugarEscolhido)
 									para(l=0;l<LUGARES;l++){
 										para(c=0;c<LUGARES;c++){
-											se(lugarEscolhido == cinema[l][c]){
+											se(lugarEscolhido == cinema[l][c] e lugarEscolhido != "X"){
 												teste_lugar = verdadeiro
 											}
 										}
@@ -161,7 +161,9 @@ programa
 							  		
 					   		lugaresCinema(cinema,LUGARES)
 					   		escreva("Quantos ingressos deseja devolver?\n")
+					   		faca{
 					   		leia(qnt_dev)
+					   		}enquanto(qnt_dev<1 ou qnt_dev>25)
 					   		limpa()
 					   		lugaresCinema(cinema, LUGARES)
 
@@ -170,8 +172,18 @@ programa
 					   		para(i=0;i<qnt_dev;i++){
 					   		
 					   			escreva ("Digite o acento que deseja devolver: \n")
-					   			leia(dev_compra)
-					   		
+					   			teste_lugar= falso
+					   			
+					   			faca{
+					   				leia(dev_compra)
+					   				para(l=0;l<LUGARES;l++){
+					   					para(c=0;c<LUGARES;c++){
+					   						se(dev_compra == copiacinema[l][c] e cinema[l][c] == "X" ){
+					   							teste_lugar= verdadeiro
+					   						}
+					   					}
+					   				}
+					   			}enquanto(nao teste_lugar)
 					   			devolucaoCompra(cinema, copiacinema, LUGARES, dev_compra)
 					   			lugaresCinema(cinema, LUGARES)
 					   			
@@ -190,7 +202,9 @@ programa
 							}
 					   		lugaresCinema(cinema,LUGARES)
 					   		escreva("Quantos ingressos deseja devolver?\n")
+					   		faca{
 					   		leia(qnt_dev)
+					   		}enquanto(qnt_dev<1 ou qnt_dev>25)
 					   		limpa()
 					   		lugaresCinema(cinema, LUGARES)
 
@@ -416,8 +430,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 259; 
- * @DOBRAMENTO-CODIGO = [27, 32];
+ * @POSICAO-CURSOR = 12364; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
